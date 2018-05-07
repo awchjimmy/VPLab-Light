@@ -1,6 +1,6 @@
 * VLC cmd line options
 ```
-vlc --fullscreen --no-video-title-show VIDEO.MP4
+vlc --fullscreen --no-video-title-show --qt-continue 0 VIDEO.MP4
 ```
 ref: vlc -h
 
