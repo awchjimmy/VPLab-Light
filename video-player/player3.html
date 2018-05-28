@@ -1,0 +1,46 @@
+<html>
+
+  <head></head>
+
+  <body>
+    <video controls id="vid" src="video0.mp4" type="video/mp4" muted autoplay>
+
+
+
+
+    </video>
+    <script>
+	var vidUrls = ['video0.mp4', 'video1.mp4', 'video2.mp4', 'video3.mp4'];
+	var curTrack = 0;
+	var vid = document.getElementById("vid");
+	
+
+	// Play default background video
+	// when video playback ends.
+	vid.onended = function(){
+		this.setAttribute("src", vidUrls[0]);
+		this.load();
+		this.play();
+	};
+
+
+	// Skip to next video (video1, video2, ..., videoN)
+	// in vidUrls array.
+	var body = document.querySelector("body");
+	body.onkeydown = function(e){
+		console.log(curTrack+1);
+		vid.setAttribute("src", vidUrls[curTrack+1]);
+		vid.muted = false;
+		vid.load();
+		vid.play();
+
+		curTrack = (curTrack+1) % 3;
+	};
+
+
+
+    </script>
+  </body>
+
+
+</html>
