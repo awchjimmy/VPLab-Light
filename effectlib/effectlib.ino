@@ -1,32 +1,36 @@
 #include <FastLED.h>
 #include "VPEffectStatic.cpp"
+#include "VPEffectColorWipe.cpp"
 #define NUM_LEDS 40
 
 CRGBArray<NUM_LEDS> leds;
 
 
 VPEffectStatic ledEnvironment;
-VPEffectStatic ledEnvironment2;
+VPEffectColorWipe ledCoin;
 
 void setup() {
   // put your setup code here, to run once:
   FastLED.addLeds<NEOPIXEL, 8>(leds, NUM_LEDS);
 
-  leds = CRGB::Blue;
+  leds = CHSV(128, 255, 50);
   FastLED.show();
 
   // 屬性設定
   ledEnvironment.setRef(leds);
-  ledEnvironment.setRange(20, 30);
+  ledEnvironment.setRange(30, 40);
   ledEnvironment.setColor(CRGB::Red);
   
-  ledEnvironment2.setRef(leds);
-  ledEnvironment2.setRange(20, 35);
-  ledEnvironment2.setColor(CRGB::Blue);
+  ledCoin.setRef(leds);
+  ledCoin.setRange(30, 40);
+  ledCoin.setColor(CRGB::Green);
+  ledCoin.setInterval(1000);
 
   // 流程設定
-  ledEnvironment.startAt(3000);
-  ledEnvironment2.startAt(5000);
+  ledEnvironment.startAt(1000);
+  ledCoin.startAt(2000);
+  
+  
 
 
 }
@@ -34,6 +38,6 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   ledEnvironment.update();
-  ledEnvironment2.update();
+  ledCoin.update();
   FastLED.show();
 }
