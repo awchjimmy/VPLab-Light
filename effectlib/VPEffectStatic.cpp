@@ -4,7 +4,8 @@ class VPEffectStatic {
   public:
     VPEffectStatic() {
       cur = prev = millis();
-      interval = 500;
+      interval = 50;
+      __show = false;
     }
 
     void update() {
@@ -13,20 +14,23 @@ class VPEffectStatic {
       cur = millis();
 
       // startAt(duration);
-      // TODO: only start once, fix required
       if (cur - prev < duration) {
-        return;
+      } else if (__firsttime) {
+        __firsttime = false;
+        __show = true;
+      } else {
+        // already start, nothing to do here.
       }
 
 
-
-
-      if (cur - prev > interval) {
+      if (__show && cur - prev > interval) {
         prev = cur;
-        //leds(rangeStart, rangeEnd) = color;
+
         for (int i = rangeStart; i < rangeEnd; i++) {
           __leds[i] = color;
         }
+
+        __show = false;
       }
     }
 
@@ -43,17 +47,8 @@ class VPEffectStatic {
       this->color = color;
     }
 
-    /*
-      void start() {
-      __stop = false;
-      }
-
-      void stop() {
-      __stop = true;
-      }
-    */
-
     void startAt(long duration) {
+      __firsttime = true;
       cur = prev = millis();
       this->duration = duration;
     }
@@ -64,6 +59,7 @@ class VPEffectStatic {
     CRGB* __leds;
     long cur, prev, interval;
     long duration;
+    bool __firsttime, __show;
     int rangeStart, rangeEnd;
     CRGB color;
 };

@@ -21,8 +21,8 @@ void setup() {
   ledEnvironment.setColor(CRGB::Red);
   
   ledEnvironment2.setRef(leds);
-  ledEnvironment2.setRange(30, 35);
-  ledEnvironment2.setColor(CRGB::Green);
+  ledEnvironment2.setRange(20, 35);
+  ledEnvironment2.setColor(CRGB::Blue);
 
   // 流程設定
   ledEnvironment.startAt(3000);
