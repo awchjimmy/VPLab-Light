@@ -15,13 +15,18 @@ void setup() {
   leds = CRGB::Blue;
   FastLED.show();
 
+  // 屬性設定
   ledEnvironment.setRef(leds);
   ledEnvironment.setRange(20, 30);
   ledEnvironment.setColor(CRGB::Red);
-
+  
   ledEnvironment2.setRef(leds);
   ledEnvironment2.setRange(30, 35);
   ledEnvironment2.setColor(CRGB::Green);
+
+  // 流程設定
+  ledEnvironment.startAt(3000);
+  ledEnvironment2.startAt(5000);
 
 
 }
