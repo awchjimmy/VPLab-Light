@@ -81,7 +81,6 @@ class VPEffectGradient {
 
       if (__show && cur - prev > interval) {
         prev = cur;
-
         mainEffectLogic();
       }
     }
