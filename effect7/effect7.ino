@@ -4,7 +4,7 @@ CRGBArray<120> leds1;
 CRGBArray<115> leds2;
 CRGBArray<100> leds3;
 
-static byte color = 0;
+const static byte COLOR_BLUE = 160; // blue
 const int d = 100;
 static byte brightness = 0;
 static byte sinb = 0;
@@ -36,19 +36,22 @@ void setup() {
 }
 
 void loop() {
-  leds1(0, 29) = CRGB::White;
+  // 手機
+  // leds1(0, 29) = CRGB::Black;
 
   sinb = sin8(brightness);
 
-  leds1(91, 120) = CHSV(0, 255, sinb);
-  leds2(86, 115) = CHSV(0, 255, sinb);
-  leds3(71, 100) = CHSV(0, 255, sinb);
+  // 硬幣
+  leds1(91, 120) = CHSV(COLOR_BLUE, 255, sinb);
+  leds2(86, 115) = CHSV(COLOR_BLUE, 255, sinb);
+  leds3(71, 100) = CHSV(COLOR_BLUE, 255, sinb);
 
-  leds1(dot1 + off1, dot1 + len1 + off1) = CRGB::Red;
-  leds2(dot2, dot2 + 2) = CRGB::Red;
-  leds3(dot3, dot3 + 2) = CRGB::Red;
+  // 水流燈
+  leds1(dot1 + off1, dot1 + len1 + off1) = CRGB::Blue;
+  leds2(dot2, dot2 + 2) = CRGB::Blue;
+  leds3(dot3, dot3 + 2) = CRGB::Blue;
 
-  Serial.println(dot1);
+  // Serial.println(dot1);
   FastLED.show();
 
   // update value below //
