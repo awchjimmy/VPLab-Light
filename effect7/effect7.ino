@@ -1,8 +1,8 @@
 #include<FastLED.h>
 
 CRGBArray<120> leds1;
-CRGBArray<115> leds2;
-CRGBArray<100> leds3;
+CRGBArray<145> leds2;
+CRGBArray<130> leds3;
 
 const static byte COLOR_BLUE = 160; // blue
 const int d = 100;
@@ -25,8 +25,8 @@ void setup() {
   Serial.begin(115200);
 
   FastLED.addLeds<NEOPIXEL, 4>(leds1, 120);
-  FastLED.addLeds<NEOPIXEL, 5>(leds2, 115);
-  FastLED.addLeds<NEOPIXEL, 6>(leds3, 100);
+  FastLED.addLeds<NEOPIXEL, 5>(leds2, 145);
+  FastLED.addLeds<NEOPIXEL, 6>(leds3, 130);
 
   leds1 = CRGB::Black;
   leds2 = CRGB::Black;
@@ -43,8 +43,8 @@ void loop() {
 
   // 硬幣
   leds1(91, 120) = CHSV(COLOR_BLUE, 255, sinb);
-  leds2(86, 115) = CHSV(COLOR_BLUE, 255, sinb);
-  leds3(71, 100) = CHSV(COLOR_BLUE, 255, sinb);
+  leds2(86, 145) = CHSV(COLOR_BLUE, 255, sinb);
+  leds3(71, 130) = CHSV(COLOR_BLUE, 255, sinb);
 
   // 水流燈
   leds1(dot1 + off1, dot1 + len1 + off1) = CRGB::Blue;
