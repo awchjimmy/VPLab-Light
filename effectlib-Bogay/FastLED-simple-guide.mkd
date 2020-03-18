@@ -1,0 +1,53 @@
+##FastLED 基本用法
+---
+- 加入燈條  
+將一個長度為100的燈條加入控制，並從pin6輸出
+
+```cpp
+#include <FastLED.h>
+
+CRGB leds[100];
+
+void setup()
+{
+    FastLED.addLeds<NEOPIXEL, 6>(leds, 100);
+}
+
+```
+- 多個燈條共用同個陣列  
+當一個效果要被多個燈條同時使用時，在程式內可以共用同一個陣列，節省記憶體
+
+```cpp
+#include <FastLED.h>
+
+CRGB leds[100];
+
+void setup()
+{
+    FastLED.addLeds<NEOPIXEL, 6>(leds, 100);
+    FastLED.addLeds<NEOPIXEL, 7>(leds, 100);
+}
+```
+
+- 動態加入燈條  
+某些時候需要使用很多燈條，但並非在整個執行期間都需要使用時，由於C++模板裡無法使用變數，故需要自定義函式  
+arduino UNO上2K的記憶體大約可以用到約400~500顆燈，但此時剩餘記憶體將非常的少，可能會造成程式出問題
+```cpp
+#include <FastLED.h>
+
+template<uint8_t LED_PIN>
+void light(int led_num)
+{
+    CRGB leds[led_num];
+    FastLED.addLeds<NEOPIXEL, LED_PIN>(leds, led_num);
+    fill_soild(leds, led_num, CRGB::Green);
+    FastLED.show();
+}
+
+void loop()
+{
+    light<10>(120);
+    light<11>(300);
+}
+
+```
